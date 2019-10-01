@@ -13,7 +13,7 @@ namespace SortingAlgorithms
                 data[i] = random.Next(0, data.Length);
             }
 
-            data.BubbleSort();
+            data.InsertionSort();
             ;
         }
     }
