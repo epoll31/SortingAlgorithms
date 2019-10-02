@@ -6,14 +6,15 @@ namespace SortingAlgorithms
     {
         static void Main(string[] args)
         {
-            Random random = new Random();
+            Random random = new Random(1);
             int[] data = new int[100];
             for (int i = 0; i < data.Length; i++)
             {
                 data[i] = random.Next(0, data.Length);
             }
+            //data = new[] { 5, 4, 3, 2, 1 };
 
-            data.InsertionSort();
+            data.MergeSort();
             ;
         }
     }
