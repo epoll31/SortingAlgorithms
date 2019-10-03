@@ -14,7 +14,7 @@ namespace SortingAlgorithms
             }
             //data = new[] { 5, 4, 3, 2, 1 };
 
-            data.MergeSort();
+            data.QuickSort(PartitionType.Lomuto);
             ;
         }
     }

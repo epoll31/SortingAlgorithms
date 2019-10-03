@@ -107,7 +107,30 @@ namespace SortingAlgorithms
             }
         }
        
+        public static void QuickSort<T>(this T[] data, PartitionType partition = PartitionType.Lomuto) where T : IComparable
+        {
+            switch(partition)
+            {
+                case PartitionType.Lomuto:
+                    data.QuickSortLomutoPartition();
+                    break;
+                case PartitionType.Hoare:
+                    data.QuickSortHoarePartition();
+                    break;
+            }
+        }
+        private static void QuickSortLomutoPartition<T>(this T[] data) where T : IComparable
+        {
 
+        }
+        private static void QuickSortHoarePartition<T>(this T[] data) where T : IComparable
+        {
+        }
+    }
 
+    public enum PartitionType
+    {
+        Lomuto = 0,
+        Hoare = 1
     }
 }
