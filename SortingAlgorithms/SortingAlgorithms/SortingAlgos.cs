@@ -84,7 +84,7 @@ namespace SortingAlgorithms
         private static void Merge<T>(this T[] data, int min, int max) where T : IComparable
         {
             int length = max - min;
-            int mid = min + length / 2; 
+            int mid = min + length / 2;
             int midIndex = mid;
             int minIndex = min;
 
@@ -95,8 +95,8 @@ namespace SortingAlgorithms
                     minIndex++;
                     continue;
                 }
-                
-                for (int i = midIndex-1; i >= minIndex; i--)
+
+                for (int i = midIndex - 1; i >= minIndex; i--)
                 {
                     data.Swap(i, i + 1);
                 }
@@ -106,23 +106,42 @@ namespace SortingAlgorithms
                 mid++;
             }
         }
-       
+
         public static void QuickSort<T>(this T[] data, PartitionType partition = PartitionType.Lomuto) where T : IComparable
         {
-            switch(partition)
+            switch (partition)
             {
                 case PartitionType.Lomuto:
-                    data.QuickSortLomutoPartition();
+                    data.QuickSortLomutoPartition(0, data.Length);
                     break;
                 case PartitionType.Hoare:
                     data.QuickSortHoarePartition();
                     break;
             }
         }
-        private static void QuickSortLomutoPartition<T>(this T[] data) where T : IComparable
-        {
 
+        private static void QuickSortLomutoPartition<T>(this T[] data, int minIndex, int maxIndex) where T : IComparable
+        {
+            if (maxIndex - minIndex <= 1)
+            {
+                return;
+            }
+            int pivotIndex = maxIndex - 1;
+            int wallIndex = minIndex;
+            for (int i = minIndex; i < pivotIndex; i++)
+            {
+                if (data[i].CompareTo(data[pivotIndex]) < 0)
+                {
+                    data.Swap(i, wallIndex);
+                    wallIndex++;
+                }
+            }
+            data.Swap(wallIndex, pivotIndex);
+
+            data.QuickSortLomutoPartition(minIndex, wallIndex);
+            data.QuickSortLomutoPartition(wallIndex + 1, maxIndex);
         }
+
         private static void QuickSortHoarePartition<T>(this T[] data) where T : IComparable
         {
         }
