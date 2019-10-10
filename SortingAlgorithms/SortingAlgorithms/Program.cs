@@ -12,13 +12,13 @@ namespace SortingAlgorithms
             {
                 data[i] = random.Next(0, data.Length);
             }
-            //data = new[] { 10, 1, 9, 2, 8, 3, 7, 4, 6, 5 };
+            data = new[] { 10, 1, 9, 2, 8, 3, 7, 4, 6, 5 };
             for (int i = 0; i < data.Length; i++)
             {
                 Console.WriteLine(data[i]);
             }
 
-            data.QuickSort(PartitionType.Lomuto);
+            data.QuickSort(PartitionType.Hoare);
 
             Console.CursorTop = 0;
             for (int i = 0; i < data.Length; i++)
