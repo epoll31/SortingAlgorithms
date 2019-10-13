@@ -115,7 +115,7 @@ namespace SortingAlgorithms
                     data.QuickSortLomutoPartition(0, data.Length);
                     break;
                 case PartitionType.Hoare:
-                    data.QuickSortHoarePartition(0, data.Length);
+                    data.QuickSortHoarePartition(0, data.Length-1);
                     break;
             }
         }
@@ -142,26 +142,26 @@ namespace SortingAlgorithms
         }
         private static void QuickSortHoarePartition<T>(this T[] data, int minIndex, int maxIndex) where T : IComparable
         {
-            if (maxIndex <= minIndex)
+            if (minIndex >= maxIndex)
             {
                 return;
             }
 
-            int pivotIndex = minIndex;
+            T pivot =  data[minIndex];
             int leftIndex = minIndex-1;
-            int rightIndex = maxIndex;
+            int rightIndex = maxIndex+1;
 
             while (true)
             {
                 do
                 {
                     leftIndex++;
-                } while (data[leftIndex].CompareTo(data[pivotIndex]) < 0);
-
-                do
-                {
-                    rightIndex--;
-                } while (data[rightIndex].CompareTo(data[pivotIndex]) > 0);
+                } while (data[leftIndex].CompareTo(pivot) < 0);
+                                                    
+                do                                  
+                {                                   
+                    rightIndex--;                   
+                } while (data[rightIndex].CompareTo(pivot) > 0);
 
                 if (leftIndex >= rightIndex)
                 {
@@ -172,7 +172,7 @@ namespace SortingAlgorithms
             }
 
             data.QuickSortHoarePartition(minIndex, rightIndex);
-            data.QuickSortHoarePartition(rightIndex, maxIndex);
+            data.QuickSortHoarePartition(rightIndex+1 , maxIndex);
         }
     }
 
